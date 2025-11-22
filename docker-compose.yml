@@ -45,24 +45,26 @@ services:
       - "8000:8000"
     volumes:
       - chroma-data:/app/chroma_db
+      - ./rag-service/app:/app/app # Hot reload mount
+    command: python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     networks:
       - fitfusion-network
     depends_on:
       mysql:
-        condition: service_healthy
+        condition: service_started
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
       interval: 30s
       timeout: 10s
       retries: 3
-
-  # ============================================
-  # Spring Boot Backend
-  # ============================================
+    # ============================================
+    # Spring Boot Backend
+    # ============================================
   spring-backend:
     build:
       context: ./spring-backend
       dockerfile: Dockerfile
+      target: build # Use the Maven build stage for development
     container_name: fitfusion-spring
     environment:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
@@ -73,13 +75,17 @@ services:
       INTERNAL_API_KEY: ${INTERNAL_API_KEY}
     ports:
       - "8080:8080"
+    volumes:
+      - ./spring-backend:/app # Mount source code
+      - /app/target # Anonymous volume for target to avoid host conflicts
+    command: mvn spring-boot:run -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
     networks:
       - fitfusion-network
     depends_on:
       mysql:
         condition: service_healthy
       rag-service:
-        condition: service_healthy
+        condition: service_started
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
       interval: 30s
