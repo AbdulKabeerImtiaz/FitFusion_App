@@ -1,0 +1,37 @@
+# Environment variables
+.env
+
+# Maven
+spring-backend/target/
+spring-backend/.mvn/
+spring-backend/mvnw
+spring-backend/mvnw.cmd
+
+# Python
+rag-service/__pycache__/
+rag-service/**/__pycache__/
+rag-service/*.pyc
+rag-service/.pytest_cache/
+rag-service/venv/
+rag-service/.venv/
+
+# ChromaDB persistence
+chroma_db/
+rag-service/chroma_db/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Docker volumes
+mysql-data/
