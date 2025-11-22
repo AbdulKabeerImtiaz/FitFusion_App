@@ -44,6 +44,48 @@ services:
     ports:
       - "8000:8000"
     volumes:
+      - chroma-data:/app/chroma_db
+    networks:
+      - fitfusion-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ============================================
+  # Spring Boot Backend
+  # ============================================
+  spring-backend:
+    build:
+      context: ./spring-backend
+      dockerfile: Dockerfile
+    container_name: fitfusion-spring
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      RAG_SERVICE_URL: ${RAG_SERVICE_URL}
+      INTERNAL_API_KEY: ${INTERNAL_API_KEY}
+    ports:
+      - "8080:8080"
+    networks:
+      - fitfusion-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      rag-service:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
 networks:
   fitfusion-network:
     driver: bridge
