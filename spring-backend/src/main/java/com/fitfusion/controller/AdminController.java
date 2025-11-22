@@ -7,6 +7,7 @@ import com.fitfusion.repository.FoodItemRepository;
 import com.fitfusion.service.RagClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
 
     private final ExerciseRepository exerciseRepository;
@@ -74,7 +76,8 @@ public class AdminController {
     }
 
     @PostMapping("/rag/reindex")
-    public ResponseEntity<Map<String, Object>> triggerReindex(@RequestBody(required = false) Map<String, Object> request) {
+    public ResponseEntity<Map<String, Object>> triggerReindex(
+            @RequestBody(required = false) Map<String, Object> request) {
         if (request == null) {
             request = Map.of("mode", "full");
         }

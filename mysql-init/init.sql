@@ -13,9 +13,16 @@ CREATE TABLE users (
     name VARCHAR(120) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    role ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
+    created_at TIMESTAMP DEFAULT CURRENT TIMESTAMP,
     INDEX idx_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Seed default admin user
+-- Email: admin@fitfusion.com
+-- Password: Admin@123
+INSERT INTO users (name, email, password_hash, role) VALUES
+('Admin User', 'admin@fitfusion.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ADMIN');
 
 -- ============================================
 -- 2. USER PREFERENCES TEMPLATE

@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Barbell Bench Press",
+    "muscleGroup": "chest",
+    "difficulty": "intermediate",
+    "equipmentRequired": ["barbell", "bench"],
+    "videoUrl": "https://www.youtube.com/watch?v=rT7DgCr-3pg",
+    "description": "Lie flat on a bench with feet planted on the ground. Grip the barbell slightly wider than shoulder-width. Lower the bar to your chest, then press it back up to starting position. Keep your core tight and maintain control throughout the movement."
+  },
+  {
+    "name": "Squats",
+    "muscleGroup": "legs",
+    "difficulty": "beginner",
+    "equipmentRequired": ["barbell", "squat rack"],
+    "videoUrl": "https://www.youtube.com/watch?v=ultWZbUMPL8",
+    "description": "Stand with feet shoulder-width apart, barbell resting on upper back. Lower your body by bending knees and hips, keeping chest up and back straight. Descend until thighs are parallel to ground, then drive through heels to return to starting position."
+  },
+  {
+    "name": "Deadlift",
+    "muscleGroup": "back",
+    "difficulty": "intermediate",
+    "equipmentRequired": ["barbell"],
+    "videoUrl": "https://www.youtube.com/watch?v=op9kVnSso6Q",
+    "description": "Stand with feet hip-width apart, barbell over mid-foot. Bend at hips and knees to grip the bar. Keep back straight, chest up, and drive through heels to lift the bar, extending hips and knees simultaneously. Lower with control."
+  },
+  {
+    "name": "Pull-ups",
+    "muscleGroup": "back",
+    "difficulty": "intermediate",
+    "equipmentRequired": ["pull-up bar"],
+    "videoUrl": "https://www.youtube.com/watch?v=eGo4IYlbE5g",
+    "description": "Hang from a pull-up bar with palms facing away, hands slightly wider than shoulders. Pull your body up until chin is above the bar, keeping core engaged. Lower yourself with control to full extension."
+  },
+  {
+    "name": "Overhead Press",
+    "muscleGroup": "shoulders",
+    "difficulty": "intermediate",
+    "equipmentRequired": ["barbell"],
+    "videoUrl": "https://www.youtube.com/watch?v=2yjwXTZQDDI",
+    "description": "Stand with feet shoulder-width apart, barbell at shoulder height. Press the bar overhead until arms are fully extended, keeping core tight. Lower the bar back to shoulders with control. Avoid leaning back excessively."
+  },
+  {
+    "name": "Dumbbell Bicep Curls",
+    "muscleGroup": "arms",
+    "difficulty": "beginner",
+    "equipmentRequired": ["dumbbells"],
+    "videoUrl": "https://www.youtube.com/watch?v=ykJmrZ5v0Oo",
+    "description": "Stand with feet shoulder-width apart, holding dumbbells at sides with palms facing forward. Curl the weights up towards shoulders, keeping elbows stationary. Squeeze biceps at the top, then lower with control."
+  },
+  {
+    "name": "Tricep Dips",
+    "muscleGroup": "arms",
+    "difficulty": "beginner",
+    "equipmentRequired": ["dip bars"],
+    "videoUrl": "https://www.youtube.com/watch?v=6kALZikXxLc",
+    "description": "Support yourself on parallel bars with arms straight. Lower your body by bending elbows until upper arms are parallel to ground. Push back up to starting position, focusing on tricep engagement."
+  },
+  {
+    "name": "Lunges",
+    "muscleGroup": "legs",
+    "difficulty": "beginner",
+    "equipmentRequired": ["dumbbells"],
+    "videoUrl": "https://www.youtube.com/watch?v=QOVaHwm-Q6U",
+    "description": "Stand upright holding dumbbells at sides. Step forward with one leg, lowering hips until both knees are bent at 90 degrees. Push back to starting position and repeat with opposite leg."
+  },
+  {
+    "name": "Plank",
+    "muscleGroup": "core",
+    "difficulty": "beginner",
+    "equipmentRequired": ["none"],
+    "videoUrl": "https://www.youtube.com/watch?v=ASdvN_XEl_c",
+    "description": "Start in a forearm plank position with elbows under shoulders, body in a straight line from head to heels. Engage core, squeeze glutes, and hold position without letting hips sag or pike up."
+  },
+  {
+    "name": "Romanian Deadlift",
+    "muscleGroup": "legs",
+    "difficulty": "intermediate",
+    "equipmentRequired": ["barbell"],
+    "videoUrl": "https://www.youtube.com/watch?v=JCXUYuzwNrM",
+    "description": "Stand holding barbell at hip level with slight knee bend. Hinge at hips, lowering bar along thighs while keeping back straight. Feel stretch in hamstrings, then drive hips forward to return to standing."
+  },
+  {
+    "name": "Lat Pulldown",
+    "muscleGroup": "back",
+    "difficulty": "beginner",
+    "equipmentRequired": ["cable machine"],
+    "videoUrl": "https://www.youtube.com/watch?v=CAwf7n6Luuc",
+    "description": "Sit at lat pulldown machine with knees secured under pads. Grip bar wider than shoulders, pull down to upper chest while keeping torso upright. Squeeze shoulder blades together, then return to starting position with control."
+  },
+  {
+    "name": "Incline Dumbbell Press",
+    "muscleGroup": "chest",
+    "difficulty": "intermediate",
+    "equipmentRequired": ["dumbbells", "incline bench"],
+    "videoUrl": "https://www.youtube.com/watch?v=8iPEnn-ltC8",
+    "description": "Lie on incline bench set at 30-45 degrees. Hold dumbbells at chest level with palms facing forward. Press weights up until arms are extended, then lower with control back to starting position."
+  },
+  {
+    "name": "Cable Flyes",
+    "muscleGroup": "chest",
+    "difficulty": "intermediate",
+    "equipmentRequired": ["cable machine"],
+    "videoUrl": "https://www.youtube.com/watch?v=Iwe6AmxVf7o",
+    "description": "Stand between cable towers with handles at shoulder height. Step forward slightly, bring handles together in front of chest with slight bend in elbows. Control the return to starting position, feeling stretch in chest."
+  },
+  {
+    "name": "Leg Press",
+    "muscleGroup": "legs",
+    "difficulty": "beginner",
+    "equipmentRequired": ["leg press machine"],
+    "videoUrl": "https://www.youtube.com/watch?v=IZxyjW7MPJQ",
+    "description": "Sit in leg press machine with feet shoulder-width apart on platform. Lower the weight by bending knees until they reach 90 degrees. Push through heels to extend legs back to starting position without locking knees."
+  },
+  {
+    "name": "Lateral Raises",
+    "muscleGroup": "shoulders",
+    "difficulty": "beginner",
+    "equipmentRequired": ["dumbbells"],
+    "videoUrl": "https://www.youtube.com/watch?v=3VcKaXpzqRo",
+    "description": "Stand with dumbbells at sides, slight bend in elbows. Raise arms out to sides until parallel with ground, leading with elbows. Pause at top, then lower with control. Keep torso stable throughout."
+  },
+  {
+    "name": "Face Pulls",
+    "muscleGroup": "shoulders",
+    "difficulty": "beginner",
+    "equipmentRequired": ["cable machine"],
+    "videoUrl": "https://www.youtube.com/watch?v=rep-qVOkqgk",
+    "description": "Set cable at upper chest height with rope attachment. Pull rope towards face, separating hands and squeezing shoulder blades together. Focus on rear deltoids and upper back. Return to starting position with control."
+  },
+  {
+    "name": "Russian Twists",
+    "muscleGroup": "core",
+    "difficulty": "beginner",
+    "equipmentRequired": ["medicine ball"],
+    "videoUrl": "https://www.youtube.com/watch?v=wkD8rjkodUI",
+    "description": "Sit on ground with knees bent, feet elevated. Hold medicine ball at chest, lean back slightly. Rotate torso side to side, touching ball to ground on each side. Keep core engaged and movement controlled."
+  },
+  {
+    "name": "Hammer Curls",
+    "muscleGroup": "arms",
+    "difficulty": "beginner",
+    "equipmentRequired": ["dumbbells"],
+    "videoUrl": "https://www.youtube.com/watch?v=zC3nLlEvin4",
+    "description": "Stand with dumbbells at sides, palms facing each other (neutral grip). Curl weights up towards shoulders keeping palms facing inward throughout. Lower with control, maintaining neutral grip position."
+  },
+  {
+    "name": "Bulgarian Split Squats",
+    "muscleGroup": "legs",
+    "difficulty": "advanced",
+    "equipmentRequired": ["dumbbells", "bench"],
+    "videoUrl": "https://www.youtube.com/watch?v=2C-uNgKwPLE",
+    "description": "Stand facing away from bench, place one foot on bench behind you. Hold dumbbells at sides. Lower body by bending front knee until thigh is parallel to ground. Drive through front heel to return to starting position."
+  },
+  {
+    "name": "Cable Crunches",
+    "muscleGroup": "core",
+    "difficulty": "intermediate",
+    "equipmentRequired": ["cable machine"],
+    "videoUrl": "https://www.youtube.com/watch?v=Xyd_fa5zoEU",
+    "description": "Kneel facing cable machine with rope attachment overhead. Hold rope behind head, crunch down by flexing abs and bringing elbows towards knees. Keep hips stationary, focus on ab contraction. Return to starting position with control."
+  }
+]

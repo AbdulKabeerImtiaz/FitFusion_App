@@ -43,16 +43,15 @@ public class AuthService {
         response.put("user", Map.of(
                 "id", user.getId(),
                 "name", user.getName(),
-                "email", user.getEmail()
-        ));
+                "email", user.getEmail(),
+                "role", user.getRole().name()));
 
         return response;
     }
 
     public Map<String, Object> login(String email, String password) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(email, password)
-        );
+                new UsernamePasswordAuthenticationToken(email, password));
 
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -64,8 +63,8 @@ public class AuthService {
         response.put("user", Map.of(
                 "id", user.getId(),
                 "name", user.getName(),
-                "email", user.getEmail()
-        ));
+                "email", user.getEmail(),
+                "role", user.getRole().name()));
 
         return response;
     }
