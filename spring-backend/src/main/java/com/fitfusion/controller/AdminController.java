@@ -34,6 +34,15 @@ public class AdminController {
         return ResponseEntity.ok(exerciseRepository.save(exercise));
     }
 
+    @PostMapping("/exercises/bulk")
+    public ResponseEntity<Map<String, Object>> createExercisesBulk(@RequestBody List<Exercise> exercises) {
+        List<Exercise> savedExercises = exerciseRepository.saveAll(exercises);
+        return ResponseEntity.ok(Map.of(
+                "message", "Exercises created successfully",
+                "count", savedExercises.size(),
+                "exercises", savedExercises));
+    }
+
     @PutMapping("/exercises/{id}")
     public ResponseEntity<Exercise> updateExercise(@PathVariable Long id, @RequestBody Exercise exercise) {
         exercise.setId(id);
@@ -55,6 +64,15 @@ public class AdminController {
     @PostMapping("/food-items")
     public ResponseEntity<FoodItem> createFoodItem(@RequestBody FoodItem foodItem) {
         return ResponseEntity.ok(foodItemRepository.save(foodItem));
+    }
+
+    @PostMapping("/food-items/bulk")
+    public ResponseEntity<Map<String, Object>> createFoodItemsBulk(@RequestBody List<FoodItem> foodItems) {
+        List<FoodItem> savedFoodItems = foodItemRepository.saveAll(foodItems);
+        return ResponseEntity.ok(Map.of(
+                "message", "Food items created successfully",
+                "count", savedFoodItems.size(),
+                "foodItems", savedFoodItems));
     }
 
     @PutMapping("/food-items/{id}")

@@ -5,7 +5,7 @@ class ExerciseDetail(BaseModel):
     """Individual exercise in a workout"""
     exercise_name: str = Field(..., description="Name of the exercise")
     sets: int = Field(..., ge=1, le=10, description="Number of sets")
-    reps: int = Field(..., ge=1, le=50, description="Number of repetitions")
+    reps: int | str = Field(..., description="Number of repetitions or duration")
     rest_seconds: int = Field(..., ge=30, le=300, description="Rest time in seconds")
     notes: Optional[str] = Field(None, description="Additional instructions")
 
@@ -13,7 +13,7 @@ class WorkoutDay(BaseModel):
     """Single day's workout"""
     day_number: int = Field(..., ge=1, description="Day number in the week")
     focus: str = Field(..., description="Muscle group focus for the day")
-    exercises: List[ExerciseDetail] = Field(..., min_items=1, description="List of exercises")
+    exercises: List[ExerciseDetail] = Field(..., description="List of exercises")
 
 class WorkoutWeek(BaseModel):
     """Single week's workout plan"""

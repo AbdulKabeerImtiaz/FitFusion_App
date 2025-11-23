@@ -5,22 +5,22 @@ class MealItem(BaseModel):
     """Individual food item in a meal"""
     food_name: str = Field(..., description="Name of the food item")
     serving_size: str = Field(..., description="Serving size (e.g., '100g', '1 cup')")
-    calories: int = Field(..., ge=0, description="Calories in this serving")
+    calories: float = Field(..., ge=0, description="Calories in this serving")
     protein: float = Field(..., ge=0, description="Protein in grams")
     carbs: float = Field(..., ge=0, description="Carbohydrates in grams")
     fats: float = Field(..., ge=0, description="Fats in grams")
 
 class DailyTotals(BaseModel):
     """Total daily macros"""
-    calories: int = Field(..., ge=0, description="Total daily calories")
+    calories: float = Field(..., ge=0, description="Total daily calories")
     protein: float = Field(..., ge=0, description="Total daily protein")
     carbs: float = Field(..., ge=0, description="Total daily carbs")
     fats: float = Field(..., ge=0, description="Total daily fats")
 
 class DietPlan(BaseModel):
     """Complete diet plan structure"""
-    total_daily_calories: int = Field(..., ge=1000, le=5000, description="Target daily calories")
-    total_daily_protein: int = Field(..., ge=50, le=400, description="Target daily protein in grams")
+    total_daily_calories: float = Field(..., ge=1000, le=5000, description="Target daily calories")
+    total_daily_protein: float = Field(..., ge=50, le=400, description="Target daily protein in grams")
     summary: str = Field(..., description="Overview of the diet plan")
     meals: Dict[str, List[MealItem]] = Field(
         ..., 

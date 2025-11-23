@@ -203,7 +203,9 @@ async def generate_plan(
         print(f"✗ Validation error: {e}")
         raise HTTPException(status_code=422, detail=str(e))
     except Exception as e:
+        import traceback
         print(f"✗ Generation error: {e}")
+        print(f"Traceback: {traceback.format_exc()}")
         raise HTTPException(status_code=500, detail=f"Plan generation failed: {str(e)}")
 
 # ============================================

@@ -37,7 +37,8 @@ public class PlanService {
 
         // Get user preferences
         UserPreferencesTemplate preferences = preferencesRepository.findByUserId(userId)
-                .orElseThrow(() -> new RuntimeException("User preferences not found. Please complete onboarding first."));
+                .orElseThrow(
+                        () -> new RuntimeException("User preferences not found. Please complete onboarding first."));
 
         // Convert preferences to map for RAG service
         Map<String, Object> preferencesMap = convertPreferencesToMap(preferences);
@@ -63,8 +64,11 @@ public class PlanService {
         // Save diet plan
         DietPlan dietPlan = new DietPlan();
         dietPlan.setPlanJson(dietPlanData);
-        dietPlan.setTotalDailyCalories((Integer) dietPlanData.get("total_daily_calories"));
-        dietPlan.setTotalDailyProtein((Integer) dietPlanData.get("total_daily_protein"));
+        Object caloriesObj = dietPlanData.get("total_daily_calories");
+        dietPlan.setTotalDailyCalories(caloriesObj instanceof Number ? ((Number) caloriesObj).intValue() : 0);
+
+        Object proteinObj = dietPlanData.get("total_daily_protein");
+        dietPlan.setTotalDailyProtein(proteinObj instanceof Number ? ((Number) proteinObj).intValue() : 0);
         dietPlan.setSummary((String) dietPlanData.get("summary"));
         dietPlan = dietPlanRepository.save(dietPlan);
 
@@ -76,7 +80,8 @@ public class PlanService {
         planBundle.setPreferencesSnapshot(preferencesMap);
         planBundle.setStatus(PlanBundle.PlanStatus.active);
         planBundle.setStartDate(LocalDate.now());
-        planBundle.setAllowedChangeDeadline(LocalDate.now().plusWeeks(preferences.getDurationWeeks() != null ? preferences.getDurationWeeks() : 4));
+        planBundle.setAllowedChangeDeadline(
+                LocalDate.now().plusWeeks(preferences.getDurationWeeks() != null ? preferences.getDurationWeeks() : 4));
         planBundle = planBundleRepository.save(planBundle);
 
         // Log RAG request
@@ -116,13 +121,15 @@ public class PlanService {
         map.put("height", prefs.getHeight());
         map.put("gender", prefs.getGender() != null ? prefs.getGender().name() : null);
         map.put("goal", prefs.getGoal() != null ? prefs.getGoal().name() : null);
-        map.put("experience_level", prefs.getExperienceLevel() != null ? prefs.getExperienceLevel().name() : "beginner");
+        map.put("experience_level",
+                prefs.getExperienceLevel() != null ? prefs.getExperienceLevel().name() : "beginner");
         map.put("workout_location", prefs.getWorkoutLocation() != null ? prefs.getWorkoutLocation().name() : "home");
         map.put("equipment_list", prefs.getEquipmentList());
         map.put("target_muscle_groups", prefs.getTargetMuscleGroups());
         map.put("duration_weeks", prefs.getDurationWeeks() != null ? prefs.getDurationWeeks() : 4);
         map.put("frequency_per_week", 5); // Default
-        map.put("dietary_preference", prefs.getDietaryPreference() != null ? prefs.getDietaryPreference().name() : "mixed");
+        map.put("dietary_preference",
+                prefs.getDietaryPreference() != null ? prefs.getDietaryPreference().name() : "mixed");
         map.put("excluded_foods", prefs.getExcludedFoods());
         map.put("allergies", prefs.getAllergies());
         map.put("medical_conditions", prefs.getMedicalConditions());

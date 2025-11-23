@@ -7,6 +7,7 @@ from typing import List, Dict, Optional
 from datetime import datetime
 
 from llama_index.core import Document, VectorStoreIndex, StorageContext, Settings
+from llama_index.core.vector_stores import MetadataFilters, ExactMatchFilter
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.embeddings.gemini import GeminiEmbedding
 from llama_index.llms.gemini import Gemini
@@ -39,7 +40,7 @@ class RAGEngine:
         
         # Initialize LLM
         self.llm = Gemini(
-            model=LLM_MODEL,
+            model_name=LLM_MODEL,
             api_key=GOOGLE_API_KEY,
             temperature=0.3  # Lower temperature for more consistent JSON output
         )
@@ -148,13 +149,31 @@ class RAGEngine:
             vector_store=vector_store
         )
         
-        # Build index
-        print("🔄 Creating embeddings (this may take a minute)...")
+        # Build index with rate limiting
+        print("🔄 Creating embeddings with rate limiting (this may take a few minutes)...")
+        
+        # Initialize empty index
         self.index = VectorStoreIndex.from_documents(
-            documents,
+            [],
             storage_context=storage_context,
-            show_progress=True
         )
+        
+        # Process in batches to respect API limits
+        import time
+        batch_size = 5
+        total_docs = len(documents)
+        
+        for i in range(0, total_docs, batch_size):
+            batch = documents[i : i + batch_size]
+            print(f"  - Processing batch {i//batch_size + 1}/{(total_docs + batch_size - 1)//batch_size} ({len(batch)} docs)...")
+            
+            # Insert batch into index (triggers embedding generation)
+            for doc in batch:
+                self.index.insert(doc)
+            
+            # Sleep to respect rate limits (approx 60 RPM for free tier)
+            if i + batch_size < total_docs:
+                time.sleep(2)
         
         self.last_indexed_at = datetime.now().isoformat()
         print(f"✓ Index built successfully with {len(documents)} documents")
@@ -167,18 +186,18 @@ class RAGEngine:
         
         # Build query for exercise retrieval
         query_parts = []
-        if user_preferences.get('target_muscle_groups'):
-            query_parts.append(f"muscle groups: {', '.join(user_preferences['target_muscle_groups'])}")
-        if user_preferences.get('equipment_list'):
-            query_parts.append(f"equipment: {', '.join(user_preferences['equipment_list'])}")
-        query_parts.append(f"difficulty: {user_preferences.get('experience_level', 'beginner')}")
+        if user_preferences.get('targetMuscleGroups'):
+            query_parts.append(f"muscle groups: {', '.join(user_preferences['targetMuscleGroups'])}")
+        if user_preferences.get('equipmentList'):
+            query_parts.append(f"equipment: {', '.join(user_preferences['equipmentList'])}")
+        query_parts.append(f"difficulty: {user_preferences.get('experienceLevel', 'beginner')}")
         
         query = "exercises for " + ", ".join(query_parts)
         
         # Retrieve relevant exercises
         retriever = self.index.as_retriever(
             similarity_top_k=15,
-            filters={"source": "exercise"}  # Only retrieve exercises
+            filters=MetadataFilters(filters=[ExactMatchFilter(key="source", value="exercise")])
         )
         
         retrieved_nodes = retriever.retrieve(query)
@@ -227,9 +246,9 @@ class RAGEngine:
         
         # Build query for food retrieval
         query_parts = [f"Pakistani food items"]
-        if user_preferences.get('dietary_preference') == 'veg':
+        if user_preferences.get('dietaryPreference') == 'veg':
             query_parts.append("vegetarian")
-        elif user_preferences.get('dietary_preference') == 'non_veg':
+        elif user_preferences.get('dietaryPreference') == 'non_veg':
             query_parts.append("meat protein")
         
         query = " ".join(query_parts)
@@ -237,7 +256,7 @@ class RAGEngine:
         # Retrieve relevant food items
         retriever = self.index.as_retriever(
             similarity_top_k=20,
-            filters={"source": "food_item"}  # Only retrieve food items
+            filters=MetadataFilters(filters=[ExactMatchFilter(key="source", value="food_item")])
         )
         
         retrieved_nodes = retriever.retrieve(query)

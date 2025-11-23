@@ -42,7 +42,7 @@ Video URL: {row['video_url'] or 'Not available'}
             "name": row['name'],
             "muscle_group": row['muscle_group'],
             "difficulty": row['difficulty'],
-            "equipment": equipment
+            "equipment": equipment_str  # Use string representation for ChromaDB compatibility
         }
         
         documents.append({

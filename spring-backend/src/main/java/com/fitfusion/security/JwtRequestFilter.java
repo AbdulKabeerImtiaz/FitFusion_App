@@ -25,7 +25,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
 
+        System.out.println("🔍 JWT FILTER: Processing request: " + request.getMethod() + " " + request.getRequestURI());
         final String authorizationHeader = request.getHeader("Authorization");
+        System.out.println("🔍 JWT FILTER: Authorization Header: " + (authorizationHeader != null
+                ? "Present (" + authorizationHeader.substring(0, Math.min(20, authorizationHeader.length())) + "...)"
+                : "MISSING"));
 
         String username = null;
         String jwt = null;
@@ -34,21 +38,37 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             jwt = authorizationHeader.substring(7);
             try {
                 username = jwtUtil.extractUsername(jwt);
+                System.out.println("🔍 JWT FILTER: JWT token found for user: " + username);
             } catch (Exception e) {
-                logger.error("JWT token extraction failed: " + e.getMessage());
+                System.out.println("❌ JWT FILTER: JWT token extraction failed: " + e.getMessage());
+                e.printStackTrace();
             }
+        } else {
+            System.out.println("⚠️  JWT FILTER: No Bearer token found in Authorization header");
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+            System.out.println("🔍 JWT FILTER: Loaded user details for: " + username + ", authorities: "
+                    + userDetails.getAuthorities());
 
             if (jwtUtil.validateToken(jwt, userDetails)) {
-                UsernamePasswordAuthenticationToken authenticationToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.getAuthorities());
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                System.out.println("✅ JWT FILTER: Successfully authenticated user: " + username + " with authorities: "
+                        + userDetails.getAuthorities());
+            } else {
+                System.out.println("❌ JWT FILTER: JWT token validation failed for user: " + username);
             }
         }
         chain.doFilter(request, response);
+    }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getRequestURI();
+        return path.startsWith("/api/auth/") || path.equals("/actuator/health");
     }
 }

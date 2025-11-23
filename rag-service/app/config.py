@@ -19,5 +19,5 @@ CHROMA_PERSIST_DIR = os.getenv("CHROMA_PERSIST_DIR", "./chroma_db")
 INTERNAL_API_KEY = os.getenv("INTERNAL_API_KEY", "fitfusion_internal_key_2024")
 
 # Model Configuration
-EMBEDDING_MODEL = "models/embedding-001"
-LLM_MODEL = "gemini-1.5-flash"
+EMBEDDING_MODEL = "models/text-embedding-004"
+LLM_MODEL = "models/gemini-2.0-flash"  # Updated to available model
