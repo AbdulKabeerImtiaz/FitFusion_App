@@ -34,6 +34,14 @@ public class PlanBundle {
     @Column(name = "diet_plan_id")
     private Long dietPlanId;
     
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "workout_plan_id", insertable = false, updatable = false)
+    private WorkoutPlan workoutPlan;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "diet_plan_id", insertable = false, updatable = false)
+    private DietPlan dietPlan;
+    
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private PlanStatus status = PlanStatus.active;

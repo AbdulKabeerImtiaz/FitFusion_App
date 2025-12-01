@@ -24,16 +24,8 @@ def load_exercises():
         equipment = json.loads(row['equipment_required']) if row['equipment_required'] else []
         equipment_str = ', '.join(equipment) if equipment else 'None'
         
-        # Create rich text representation
-        text = f"""
-Exercise: {row['name']}
-ID: {row['id']}
-Muscle Group: {row['muscle_group']}
-Difficulty Level: {row['difficulty']}
-Equipment Required: {equipment_str}
-Description: {row['description'] or 'No description available'}
-Video URL: {row['video_url'] or 'Not available'}
-        """.strip()
+        # Create compact text representation to save tokens
+        text = f"{row['name']} | {row['muscle_group']} | {row['difficulty']} | Equip: {equipment_str} | {row['description'] or 'N/A'}".strip()
         
         # Create metadata for filtering
         metadata = {

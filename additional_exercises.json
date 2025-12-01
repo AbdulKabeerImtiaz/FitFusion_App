@@ -1,0 +1,525 @@
+[
+    {
+        "name": "Pec Deck Machine",
+        "muscleGroup": "chest",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "pec deck machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=Z71vBaLhGSE",
+        "description": "Sit with back against pad, arms on pads at chest height. Bring arms together in front of chest, squeezing pecs. Return to starting position with control. Excellent for chest isolation."
+    },
+    {
+        "name": "Landmine Press",
+        "muscleGroup": "chest",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "barbell",
+            "landmine attachment"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=fZJv5EZ0vrY",
+        "description": "Hold end of landmine barbell at chest level. Press forward and up at an angle. Great for upper chest and shoulder engagement with reduced shoulder stress."
+    },
+    {
+        "name": "Svend Press",
+        "muscleGroup": "chest",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "weight plates"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=sP_4vybjXkQ",
+        "description": "Hold weight plates together at chest level. Press plates forward while squeezing them together. Return to chest. Excellent for inner chest activation."
+    },
+    {
+        "name": "Close Grip Bench Press",
+        "muscleGroup": "chest",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "barbell",
+            "bench"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=nEF0bv2FW94",
+        "description": "Lie on bench with hands closer than shoulder-width. Lower bar to chest, keeping elbows tucked. Press back up. Targets inner chest and triceps."
+    },
+    {
+        "name": "Single Arm Dumbbell Press",
+        "muscleGroup": "chest",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "dumbbell",
+            "bench"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=5Qy_XrJJJKo",
+        "description": "Lie on bench holding one dumbbell. Press up while stabilizing core. Unilateral training improves balance and addresses strength imbalances."
+    },
+    {
+        "name": "Deficit Push-Ups",
+        "muscleGroup": "chest",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "push-up handles"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=dKBNJjL_HTA",
+        "description": "Place hands on elevated surfaces. Lower chest below hand level for increased range of motion. Push back up. Increases chest stretch and activation."
+    },
+    {
+        "name": "Pendlay Rows",
+        "muscleGroup": "back",
+        "difficulty": "advanced",
+        "equipmentRequired": [
+            "barbell"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=h4nkoayPFWI",
+        "description": "Barbell starts on ground each rep. Pull explosively to lower chest, then return to ground. Builds explosive pulling power and back thickness."
+    },
+    {
+        "name": "Chest Supported Rows",
+        "muscleGroup": "back",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "dumbbells",
+            "incline bench"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=3ooEg6r5hGI",
+        "description": "Lie face down on incline bench. Row dumbbells to sides, squeezing shoulder blades. Removes lower back stress and isolates upper back."
+    },
+    {
+        "name": "Inverted Rows",
+        "muscleGroup": "back",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "smith machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=hXTc1mDnZCw",
+        "description": "Lie under bar set at waist height. Pull chest to bar, keeping body straight. Lower with control. Bodyweight alternative to barbell rows."
+    },
+    {
+        "name": "Single Arm Dumbbell Rows",
+        "muscleGroup": "back",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "dumbbell",
+            "bench"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=roCP6wCXPqo",
+        "description": "Place one knee and hand on bench. Row dumbbell to hip with other arm. Squeeze shoulder blade at top. Excellent for unilateral back development."
+    },
+    {
+        "name": "Meadows Rows",
+        "muscleGroup": "back",
+        "difficulty": "advanced",
+        "equipmentRequired": [
+            "barbell",
+            "landmine attachment"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=SCVZBKfXLrk",
+        "description": "Stand perpendicular to landmine. Row bar to hip with one arm. Unique angle targets lats and upper back differently than traditional rows."
+    },
+    {
+        "name": "Straight Arm Pulldowns",
+        "muscleGroup": "back",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "cable machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=M4qTVzKN6Ik",
+        "description": "Stand at cable machine with bar overhead. Pull down to thighs with straight arms. Isolates lats and teaches proper lat engagement."
+    },
+    {
+        "name": "Rack Pulls",
+        "muscleGroup": "back",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "barbell",
+            "power rack"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=ZWi8NfXNGo0",
+        "description": "Set barbell on rack pins at knee height. Deadlift from this position. Allows heavier loads and focuses on upper back and traps."
+    },
+    {
+        "name": "Hack Squats",
+        "muscleGroup": "legs",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "hack squat machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=0tn5K9NlCfo",
+        "description": "Stand on hack squat platform with shoulders under pads. Lower by bending knees, then drive back up. Excellent quad isolation with reduced back stress."
+    },
+    {
+        "name": "Walking Lunges",
+        "muscleGroup": "legs",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "dumbbells"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=L8fvypPrzzs",
+        "description": "Lunge forward continuously, alternating legs. Builds functional leg strength and balance. Can be done with or without weights."
+    },
+    {
+        "name": "Leg Extensions",
+        "muscleGroup": "legs",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "leg extension machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=YyvSfVjQeL0",
+        "description": "Sit in leg extension machine. Extend legs until straight, squeezing quads at top. Lower with control. Pure quad isolation exercise."
+    },
+    {
+        "name": "Step-Ups",
+        "muscleGroup": "legs",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "bench",
+            "dumbbells"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=dQqApCGd5Ss",
+        "description": "Step onto elevated surface with one leg, drive through heel to stand. Step down and repeat. Functional unilateral leg exercise."
+    },
+    {
+        "name": "Glute Ham Raises",
+        "muscleGroup": "legs",
+        "difficulty": "advanced",
+        "equipmentRequired": [
+            "GHD machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=kJJMz-BqXNM",
+        "description": "Secure feet in GHD machine. Lower torso towards ground, then pull back up using hamstrings. Elite hamstring and glute developer."
+    },
+    {
+        "name": "Seated Leg Curls",
+        "muscleGroup": "legs",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "leg curl machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=1Tq3QdYUuHs",
+        "description": "Sit in machine with ankles under pad. Curl legs down, squeezing hamstrings. Return with control. Isolates hamstrings effectively."
+    },
+    {
+        "name": "Pistol Squats",
+        "muscleGroup": "legs",
+        "difficulty": "advanced",
+        "equipmentRequired": [
+            "none"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=qDcniqddTeE",
+        "description": "Stand on one leg, extend other leg forward. Squat down on standing leg. Advanced single-leg strength and balance exercise."
+    },
+    {
+        "name": "Donkey Calf Raises",
+        "muscleGroup": "legs",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "calf raise machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=8dqHzB-DKfI",
+        "description": "Bend at hips with pad on lower back. Raise heels as high as possible. Unique angle for maximum calf stretch and contraction."
+    },
+    {
+        "name": "Cable Lateral Raises",
+        "muscleGroup": "shoulders",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "cable machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=PPrzBWZDOhA",
+        "description": "Stand sideways to cable machine. Raise arm out to side against cable resistance. Constant tension on side delts throughout movement."
+    },
+    {
+        "name": "Front Raises",
+        "muscleGroup": "shoulders",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "dumbbells"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=qzsDfOz1MXs",
+        "description": "Hold dumbbells at thighs. Raise arms forward to shoulder height. Lower with control. Isolates front deltoids."
+    },
+    {
+        "name": "Bradford Press",
+        "muscleGroup": "shoulders",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "barbell"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=6kq4B2YXxzw",
+        "description": "Press barbell from front to back of head in continuous motion. Keeps shoulders under constant tension. Use lighter weight."
+    },
+    {
+        "name": "Bus Drivers",
+        "muscleGroup": "shoulders",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "weight plate"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=pkANd566v4k",
+        "description": "Hold weight plate at arms length. Rotate plate like steering wheel. Burns shoulders and improves endurance."
+    },
+    {
+        "name": "Seated Rear Delt Flyes",
+        "muscleGroup": "shoulders",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "dumbbells",
+            "bench"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=T7gWBKwzUUg",
+        "description": "Sit bent forward. Raise dumbbells out to sides, squeezing rear delts. Isolates often-neglected rear deltoids."
+    },
+    {
+        "name": "Cable Face Pulls High",
+        "muscleGroup": "shoulders",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "cable machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=HSoHeSjvIdY",
+        "description": "Set cable high. Pull rope towards forehead, separating hands. Targets rear delts and upper traps. Excellent for posture."
+    },
+    {
+        "name": "EZ Bar Curls",
+        "muscleGroup": "arms",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "ez bar"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=kwG2ipFRgfo",
+        "description": "Hold EZ bar with underhand grip. Curl up, squeezing biceps. EZ bar reduces wrist strain compared to straight bar."
+    },
+    {
+        "name": "Cable Bicep Curls",
+        "muscleGroup": "arms",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "cable machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=6Fzep104f0s",
+        "description": "Stand at cable machine with bar attachment. Curl up, maintaining constant tension. Cable provides consistent resistance throughout."
+    },
+    {
+        "name": "Spider Curls",
+        "muscleGroup": "arms",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "ez bar",
+            "incline bench"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=6Fzep104f0s",
+        "description": "Lie face down on incline bench. Curl bar up with arms hanging. Eliminates momentum and isolates biceps peak."
+    },
+    {
+        "name": "Drag Curls",
+        "muscleGroup": "arms",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "barbell"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=5JZAYJYMao0",
+        "description": "Curl barbell up while dragging it along torso, elbows moving back. Unique angle for bicep stimulation."
+    },
+    {
+        "name": "Reverse Curls",
+        "muscleGroup": "arms",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "barbell"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=nRgxYX2Ve9w",
+        "description": "Hold barbell with overhand grip. Curl up, keeping wrists straight. Targets brachialis and forearms."
+    },
+    {
+        "name": "Close Grip Push-Ups",
+        "muscleGroup": "arms",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "none"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=69EzDKTp8Ys",
+        "description": "Push-up with hands close together forming diamond shape. Emphasizes triceps over chest."
+    },
+    {
+        "name": "Rope Overhead Extensions",
+        "muscleGroup": "arms",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "cable machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=6SS6K3lAwZ8",
+        "description": "Face away from cable with rope overhead. Extend arms forward. Constant tension on triceps throughout movement."
+    },
+    {
+        "name": "Bench Dips",
+        "muscleGroup": "arms",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "bench"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=0326dy_-CzM",
+        "description": "Place hands on bench behind you, legs extended. Lower body by bending elbows, then push back up. Bodyweight tricep exercise."
+    },
+    {
+        "name": "Tate Press",
+        "muscleGroup": "arms",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "dumbbells",
+            "bench"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=YbX7Wd8jQ-Q",
+        "description": "Lie on bench with dumbbells. Lower weights to sides of chest with elbows out. Unique tricep isolation movement."
+    },
+    {
+        "name": "Ab Wheel Rollouts",
+        "muscleGroup": "core",
+        "difficulty": "advanced",
+        "equipmentRequired": [
+            "ab wheel"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=EXm0BYpfqRs",
+        "description": "Kneel with ab wheel. Roll forward extending body, then pull back. Elite core strengthener requiring full-body tension."
+    },
+    {
+        "name": "Dead Bug",
+        "muscleGroup": "core",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "none"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=g_BYB0R-4Ws",
+        "description": "Lie on back with arms and legs up. Lower opposite arm and leg simultaneously. Teaches core stability and coordination."
+    },
+    {
+        "name": "Pallof Press",
+        "muscleGroup": "core",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "cable machine"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=AH_QZLm_0-s",
+        "description": "Stand sideways to cable. Press handle forward, resisting rotation. Anti-rotation exercise for core stability."
+    },
+    {
+        "name": "V-Ups",
+        "muscleGroup": "core",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "none"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=7UVgs18Y1P4",
+        "description": "Lie flat. Simultaneously raise legs and torso, reaching for toes. Lower with control. Intense full ab workout."
+    },
+    {
+        "name": "Side Plank",
+        "muscleGroup": "core",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "none"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=K2VljzCC16g",
+        "description": "Lie on side, prop up on elbow. Raise hips creating straight line. Hold position. Targets obliques and lateral core stability."
+    },
+    {
+        "name": "Windshield Wipers",
+        "muscleGroup": "core",
+        "difficulty": "advanced",
+        "equipmentRequired": [
+            "pull-up bar"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=GP1MF7imEJk",
+        "description": "Hang from bar with legs raised. Rotate legs side to side. Advanced oblique and lower ab exercise."
+    },
+    {
+        "name": "Hollow Body Hold",
+        "muscleGroup": "core",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "none"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=LlDNef_Ztsc",
+        "description": "Lie on back, raise shoulders and legs slightly. Hold hollow position with lower back pressed down. Gymnastic core fundamental."
+    },
+    {
+        "name": "Dragon Flags",
+        "muscleGroup": "core",
+        "difficulty": "advanced",
+        "equipmentRequired": [
+            "bench"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=moyFIvRrS0s",
+        "description": "Lie on bench, grip behind head. Raise entire body keeping it straight, lower with control. Elite-level core exercise."
+    },
+    {
+        "name": "Landmine Rotations",
+        "muscleGroup": "core",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "barbell",
+            "landmine attachment"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=5_h_VJAJvXE",
+        "description": "Hold end of landmine at chest. Rotate side to side in controlled motion. Builds rotational power and oblique strength."
+    },
+    {
+        "name": "Decline Sit-Ups",
+        "muscleGroup": "core",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "decline bench"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=ixkQaZXVQjs",
+        "description": "Secure feet on decline bench. Perform sit-ups against gravity. Increased difficulty compared to flat surface."
+    },
+    {
+        "name": "Incline Dumbbell Flyes",
+        "muscleGroup": "chest",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "dumbbells",
+            "incline bench"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=eozdVDA78K0",
+        "description": "Lie on incline bench. Lower dumbbells out to sides in arc motion. Bring back together above chest. Stretches and isolates upper chest."
+    },
+    {
+        "name": "Neutral Grip Pull-Ups",
+        "muscleGroup": "back",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "pull-up bar"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=kEVHYJEKrp8",
+        "description": "Use parallel grip handles. Pull up until chin clears bar. Neutral grip reduces shoulder stress and emphasizes biceps."
+    },
+    {
+        "name": "Zercher Squats",
+        "muscleGroup": "legs",
+        "difficulty": "advanced",
+        "equipmentRequired": [
+            "barbell"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=SHgQeBjz45w",
+        "description": "Hold barbell in crook of elbows. Squat down keeping torso upright. Unique loading pattern challenges core and legs differently."
+    },
+    {
+        "name": "Lu Raises",
+        "muscleGroup": "shoulders",
+        "difficulty": "intermediate",
+        "equipmentRequired": [
+            "weight plate"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=5yWaNOvgFCM",
+        "description": "Hold plate at waist. Raise overhead in arc motion. Lower behind head, then reverse. Full shoulder range of motion exercise."
+    },
+    {
+        "name": "Wrist Curls",
+        "muscleGroup": "arms",
+        "difficulty": "beginner",
+        "equipmentRequired": [
+            "dumbbells"
+        ],
+        "videoUrl": "https://www.youtube.com/watch?v=16xYBCfAEjU",
+        "description": "Rest forearms on bench with wrists hanging off. Curl wrists up and down. Builds forearm and grip strength."
+    }
+]

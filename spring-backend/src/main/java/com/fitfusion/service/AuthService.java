@@ -33,6 +33,11 @@ public class AuthService {
         user.setName(name);
         user.setEmail(email);
         user.setPasswordHash(passwordEncoder.encode(password));
+        
+        // Automatically assign ADMIN role to admin@fitfusion.com
+        if ("admin@fitfusion.com".equalsIgnoreCase(email)) {
+            user.setRole(User.Role.ADMIN);
+        }
 
         user = userRepository.save(user);
 
@@ -44,7 +49,7 @@ public class AuthService {
                 "id", user.getId(),
                 "name", user.getName(),
                 "email", user.getEmail(),
-                "role", user.getRole().name()));
+                "role", "ROLE_" + user.getRole().name()));
 
         return response;
     }
@@ -55,6 +60,12 @@ public class AuthService {
 
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
+        
+        // Ensure admin@fitfusion.com always has ADMIN role (in case it was changed)
+        if ("admin@fitfusion.com".equalsIgnoreCase(email) && user.getRole() != User.Role.ADMIN) {
+            user.setRole(User.Role.ADMIN);
+            user = userRepository.save(user);
+        }
 
         String token = jwtUtil.generateToken(user.getEmail(), user.getId());
 
@@ -64,7 +75,7 @@ public class AuthService {
                 "id", user.getId(),
                 "name", user.getName(),
                 "email", user.getEmail(),
-                "role", user.getRole().name()));
+                "role", "ROLE_" + user.getRole().name()));
 
         return response;
     }

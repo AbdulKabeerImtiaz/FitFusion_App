@@ -33,6 +33,19 @@ public class User {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    // Personal information
+    @Column(name = "age")
+    private Integer age;
+
+    @Column(name = "weight")
+    private Double weight;
+
+    @Column(name = "height")
+    private Double height;
+
+    @Column(name = "gender", length = 20)
+    private String gender;
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();

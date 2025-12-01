@@ -26,7 +26,16 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         System.out.println("🔍 JWT FILTER: Processing request: " + request.getMethod() + " " + request.getRequestURI());
-        final String authorizationHeader = request.getHeader("Authorization");
+        
+        // Try both "Authorization" and "authorization" (case-insensitive)
+        String authorizationHeader = request.getHeader("Authorization");
+        if (authorizationHeader == null) {
+            authorizationHeader = request.getHeader("authorization");
+            if (authorizationHeader != null) {
+                System.out.println("🔍 JWT FILTER: Found lowercase 'authorization' header with value");
+            }
+        }
+        
         System.out.println("🔍 JWT FILTER: Authorization Header: " + (authorizationHeader != null
                 ? "Present (" + authorizationHeader.substring(0, Math.min(20, authorizationHeader.length())) + "...)"
                 : "MISSING"));

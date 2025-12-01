@@ -2,32 +2,28 @@
 Prompt templates for workout and diet plan generation
 """
 
-WORKOUT_PROMPT_TEMPLATE = """You are an expert fitness coach creating a personalized workout plan.
+WORKOUT_PROMPT_TEMPLATE = """Create {duration_weeks}-week workout for {fitness_goal}, {experience_level}, {workout_location}.
 
-USER PROFILE:
-{user_profile}
-
-AVAILABLE EXERCISES (from database):
+EXERCISES:
 {exercise_context}
 
-INSTRUCTIONS:
-1. Create a {duration_weeks}-week workout plan with {frequency_per_week} sessions per week
-2. ONLY use exercises from the provided database that match:
-   - User's workout location ({workout_location})
-   - Available equipment: {equipment_available}
-   - Target muscle groups: {target_muscle_groups}
-   - Difficulty level: {experience_level}
+CRITICAL RULES:
+1. VARIETY: NEVER repeat same exercise on same weekday across weeks. Week1 Day1 ≠ Week2 Day1.
+2. MUSCLE MATCHING: Only use exercises that match the day's focus:
+   - Day1 Chest+Triceps: chest/triceps exercises only
+   - Day2 Back+Biceps: back/biceps exercises only  
+   - Day3 Legs+Core: legs/core/abs exercises only
+   - Day4 Shoulders+Abs: shoulders/abs exercises only
+   - Day5 Full Body: mix of all muscle groups
+3. PROGRESSION: W1-2(3×10-12,60s) W3-4(4×6-8,90s) W5-6(3×15-20,45s) W7-8(2×8-10,90s)
+4. VOLUME: 4-5 exercises per day
+5. Equipment: {equipment_available}, Location: {workout_location}
 
-3. Structure the plan progressively (start easier, increase intensity)
-4. Include proper rest periods between sets (60-120 seconds)
-5. Vary exercises across days to prevent overtraining
-6. Consider the user's goal: {fitness_goal}
-
-OUTPUT FORMAT (STRICT JSON):
+JSON (no markdown):
 {{
   "total_weeks": {duration_weeks},
   "frequency_per_week": {frequency_per_week},
-  "summary": "Brief overview of the plan approach",
+  "summary": "Brief overview",
   "weeks": [
     {{
       "week_number": 1,
@@ -36,13 +32,7 @@ OUTPUT FORMAT (STRICT JSON):
           "day_number": 1,
           "focus": "Chest and Triceps",
           "exercises": [
-            {{
-              "exercise_name": "Push Ups",
-              "sets": 3,
-              "reps": 12,
-              "rest_seconds": 90,
-              "notes": "Keep core tight"
-            }}
+            {{"exercise_name": "Push Ups", "sets": 3, "reps": 12, "rest_seconds": 90, "notes": "Control"}}
           ]
         }}
       ]
@@ -50,64 +40,48 @@ OUTPUT FORMAT (STRICT JSON):
   ]
 }}
 
-CRITICAL: Return ONLY valid JSON. No additional text or explanations.
-"""
+Generate ALL {duration_weeks} weeks, {frequency_per_week} days. Return ONLY JSON."""
 
-DIET_PROMPT_TEMPLATE = """You are an expert nutritionist creating a personalized diet plan for a Pakistani user.
+DIET_PROMPT_TEMPLATE = """Create UNIQUE Pakistani diet for this specific user.
 
-USER PROFILE:
-{user_profile}
+USER: Age {age}, Weight {weight}kg, Height {height}cm, Gender {gender}
+GOAL: {fitness_goal}
+PREFERENCE: {dietary_preference}
+AVOID: {excluded_foods}, ALLERGIES: {allergies}
+TARGETS: {daily_calories}kcal, {daily_protein}g protein, {daily_carbs}g carbs, {daily_fats}g fats
 
-CALCULATED TARGETS:
-- Daily Calories: {daily_calories} kcal
-- Daily Protein: {daily_protein} g
-- Daily Carbs: {daily_carbs} g
-- Daily Fats: {daily_fats} g
-
-AVAILABLE FOOD ITEMS (Pakistani cuisine from database):
+FOODS:
 {food_context}
 
-INSTRUCTIONS:
-1. Create a daily meal plan using ONLY foods from the provided database
-2. Respect dietary preferences: {dietary_preference}
-3. Avoid these foods: {excluded_foods}
-4. Consider allergies: {allergies}
-5. Distribute meals across: Breakfast, Lunch, Dinner, and 2 Snacks
-6. Match the calculated macro targets (±5% tolerance)
-7. Use realistic Pakistani portion sizes
-8. Ensure variety and palatability
+CRITICAL - PERSONALIZATION RULES:
+1. CREATE VARIETY: Select DIFFERENT food combinations for each user based on their goal
+2. GOAL-BASED SELECTION:
+   - weight_loss: High protein (eggs, chicken, fish), low carb (avoid rice/biryani), vegetables
+   - weight_gain: High carb (rice, roti, biryani), moderate protein, healthy fats
+   - muscle_gain: Very high protein (chicken, beef, eggs, lentils), moderate carb
+3. PREFERENCE MATCHING:
+   - veg: Only vegetarian items (no chicken/beef/fish)
+   - non_veg: Include meat proteins
+   - mixed: Balance of both
+4. AVOID REPETITION: Don't use same meal template for all users
+5. Match macros ±5%
 
-OUTPUT FORMAT (STRICT JSON):
+JSON format:
 {{
   "total_daily_calories": {daily_calories},
   "total_daily_protein": {daily_protein},
-  "summary": "Brief overview of the diet approach",
+  "summary": "Personalized for {fitness_goal}",
   "meals": {{
-    "breakfast": [
-      {{
-        "food_name": "Oats",
-        "serving_size": "50g",
-        "calories": 195,
-        "protein": 8.5,
-        "carbs": 33,
-        "fats": 3.5
-      }}
-    ],
+    "breakfast": [{{"food_name": "Food", "serving_size": "Xg", "calories": 0, "protein": 0, "carbs": 0, "fats": 0}}],
     "lunch": [],
     "dinner": [],
     "snack_1": [],
     "snack_2": []
   }},
-  "daily_totals": {{
-    "calories": 2400,
-    "protein": 150,
-    "carbs": 280,
-    "fats": 65
-  }}
+  "daily_totals": {{"calories": {daily_calories}, "protein": {daily_protein}, "carbs": {daily_carbs}, "fats": {daily_fats}}}
 }}
 
-CRITICAL: Return ONLY valid JSON. No additional text or explanations.
-"""
+Return ONLY JSON."""
 
 def build_workout_prompt(user_preferences: dict, exercise_context: str) -> str:
     """Build the complete workout generation prompt"""
@@ -126,12 +100,16 @@ def build_workout_prompt(user_preferences: dict, exercise_context: str) -> str:
 def build_diet_prompt(user_preferences: dict, food_context: str, macros: dict) -> str:
     """Build the complete diet generation prompt"""
     return DIET_PROMPT_TEMPLATE.format(
-        user_profile=format_user_profile(user_preferences),
+        age=user_preferences.get('age', 25),
+        weight=user_preferences.get('weight', 70),
+        height=user_preferences.get('height', 170),
+        gender=user_preferences.get('gender', 'male'),
         food_context=food_context,
         daily_calories=macros['calories'],
         daily_protein=macros['protein'],
         daily_carbs=macros['carbs'],
         daily_fats=macros['fats'],
+        fitness_goal=user_preferences.get('goal', 'general fitness'),
         dietary_preference=user_preferences.get('dietary_preference', 'mixed'),
         excluded_foods=', '.join(user_preferences.get('excluded_foods', [])) or 'None',
         allergies=', '.join(user_preferences.get('allergies', [])) or 'None'

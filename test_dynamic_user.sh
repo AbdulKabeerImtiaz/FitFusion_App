@@ -49,16 +49,16 @@ fi
 # 3. Set Preferences
 echo -e "\n3. Setting preferences for User $USER_ID..."
 PREFERENCES='{
-  "age": 25,
-  "weight": 70.0,
-  "height": 175.0,
+  "age": 20,
+  "weight": 78.0,
+  "height": 177.0,
   "gender": "male",
   "goal": "weight_gain",
-  "experienceLevel": "intermediate",
+  "experienceLevel": "advanced",
   "workoutLocation": "gym",
   "equipmentList": [],
-  "targetMuscleGroups": ["arms", "chest", "back", "shoulders"],
-  "durationWeeks": 7,
+  "targetMuscleGroups": ["arms", "chest", "back", "shoulders","legs"],
+  "durationWeeks": 9,
   "dietaryPreference": "non_veg",
   "excludedFoods": [],
   "allergies": [],

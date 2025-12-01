@@ -42,4 +42,12 @@ public class UserController {
         UserPreferencesTemplate updated = userService.savePreferences(id, preferences);
         return ResponseEntity.ok(updated);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> updateUser(
+            @PathVariable Long id,
+            @RequestBody Map<String, Object> updates) {
+        Map<String, Object> updated = userService.updateUser(id, updates);
+        return ResponseEntity.ok(updated);
+    }
 }

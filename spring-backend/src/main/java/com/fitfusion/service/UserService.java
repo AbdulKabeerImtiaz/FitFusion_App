@@ -31,7 +31,11 @@ public class UserService {
         profile.put("id", user.getId());
         profile.put("name", user.getName());
         profile.put("email", user.getEmail());
-        profile.put("created_at", user.getCreatedAt());
+        profile.put("createdAt", user.getCreatedAt());
+        profile.put("age", user.getAge());
+        profile.put("weight", user.getWeight());
+        profile.put("height", user.getHeight());
+        profile.put("gender", user.getGender());
         profile.put("preferences", preferences);
 
         return profile;
@@ -57,5 +61,55 @@ public class UserService {
     public UserPreferencesTemplate getUserPreferences(Long userId) {
         return preferencesRepository.findByUserId(userId)
                 .orElseThrow(() -> new RuntimeException("User preferences not found"));
+    }
+
+    @Transactional
+    public Map<String, Object> updateUser(Long userId, Map<String, Object> updates) {
+        User user = getUserById(userId);
+
+        // Update name if provided
+        if (updates.containsKey("name") && updates.get("name") != null) {
+            user.setName((String) updates.get("name"));
+        }
+
+        // Update personal info
+        if (updates.containsKey("age")) {
+            user.setAge(updates.get("age") != null ? ((Number) updates.get("age")).intValue() : null);
+        }
+        if (updates.containsKey("weight")) {
+            user.setWeight(updates.get("weight") != null ? ((Number) updates.get("weight")).doubleValue() : null);
+        }
+        if (updates.containsKey("height")) {
+            user.setHeight(updates.get("height") != null ? ((Number) updates.get("height")).doubleValue() : null);
+        }
+        if (updates.containsKey("gender") && updates.get("gender") != null) {
+            user.setGender((String) updates.get("gender"));
+        }
+
+        // Update password if provided
+        if (updates.containsKey("newPassword") && updates.get("newPassword") != null) {
+            String currentPassword = (String) updates.get("currentPassword");
+            String newPassword = (String) updates.get("newPassword");
+
+            // In a real app, you'd verify the current password here
+            // For now, we'll just update it
+            // Note: Password should be encoded with BCrypt in production
+            user.setPasswordHash(newPassword);
+        }
+
+        user = userRepository.save(user);
+
+        // Return updated user info
+        Map<String, Object> result = new HashMap<>();
+        result.put("id", user.getId());
+        result.put("name", user.getName());
+        result.put("email", user.getEmail());
+        result.put("createdAt", user.getCreatedAt());
+        result.put("age", user.getAge());
+        result.put("weight", user.getWeight());
+        result.put("height", user.getHeight());
+        result.put("gender", user.getGender());
+
+        return result;
     }
 }

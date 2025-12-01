@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitFusion - Iron & Fire Theme</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #121212;
+            color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Energy lines background */
+        .energy-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.1;
+            background: 
+                linear-gradient(90deg, transparent 0%, #ff4500 50%, transparent 100%),
+                linear-gradient(0deg, transparent 0%, #ffa500 50%, transparent 100%);
+            background-size: 200% 200%;
+            animation: energyPulse 8s ease infinite;
+        }
+
+        @keyframes energyPulse {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            margin-bottom: 3rem;
+            border-bottom: 3px solid #ff4500;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ff4500;
+            text-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
+            letter-spacing: 2px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav a:hover {
+            color: #ff4500;
+            background: rgba(255, 69, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Bold cards */
+        .power-card {
+            background: #1e1e1e;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 69, 0, 0.2);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .power-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 12px 48px rgba(255, 69, 0, 0.4),
+                inset 0 1px 0 rgba(255, 69, 0, 0.4);
+            border-color: #ff4500;
+        }
+
+        /* Grid layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #ff4500;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+        }
+
+        .stat-label {
+            color: #ffa500;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-fire {
+            background: linear-gradient(135deg, #ff4500, #ffa500);
+            color: #121212;
+            box-shadow: 0 4px 20px rgba(255, 69, 0, 0.5);
+        }
+
+        .btn-fire:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 69, 0, 0.8);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #ff4500;
+            border: 3px solid #ff4500;
+        }
+
+        .btn-outline:hover {
+            background: #ff4500;
+            color: #121212;
+            box-shadow: 0 4px 20px rgba(255, 69, 0, 0.6);
+        }
+
+        /* Progress bar */
+        .progress-container {
+            margin: 2rem 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffa500;
+        }
+
+        .progress-bar {
+            height: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 69, 0, 0.3);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff4500, #ffa500);
+            border-radius: 8px;
+            transition: width 1s ease;
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Workout card */
+        .workout-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 69, 0, 0.1);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #ff4500;
+            transition: all 0.3s;
+        }
+
+        .workout-item:hover {
+            background: rgba(255, 69, 0, 0.2);
+            transform: translateX(10px);
+            border-left-width: 8px;
+        }
+
+        .workout-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #ff4500, #ffa500);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.5);
+        }
+
+        .workout-info h3 {
+            color: #ffa500;
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .workout-info p {
+            color: #cccccc;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            color: #ff4500;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .intensity-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #00ff88;
+            color: #121212;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Energy background -->
+    <div class="energy-bg"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">🔥 FITFUSION</div>
+            <nav class="nav">
+                <a href="#">Dashboard</a>
+                <a href="#">My Plans</a>
+                <a href="#">Progress</a>
+                <a href="#">Profile</a>
+            </nav>
+        </header>
+
+        <!-- Welcome section -->
+        <h1>UNLEASH YOUR POWER! 💪</h1>
+
+        <!-- Stats grid -->
+        <div class="dashboard-grid">
+            <div class="power-card stat-card">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Workouts</div>
+            </div>
+            <div class="power-card stat-card">
+                <div class="stat-value">2,450</div>
+                <div class="stat-label">Calories</div>
+            </div>
+            <div class="power-card stat-card">
+                <div class="stat-value">85%</div>
+                <div class="stat-label">Progress</div>
+            </div>
+        </div>
+
+        <!-- Current plan -->
+        <div class="power-card">
+            <h2>🎯 WEIGHT GAIN PROGRAM <span class="intensity-badge">ACTIVE</span></h2>
+            
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>WEEK 3 OF 8</span>
+                    <span>62%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 62%"></div>
+                </div>
+            </div>
+
+            <div class="workout-item">
+                <div class="workout-icon">🏋️</div>
+                <div class="workout-info">
+                    <h3>TODAY'S WORKOUT</h3>
+                    <p>Chest & Triceps • 45 min • High Intensity</p>
+                </div>
+            </div>
+
+            <div class="workout-item">
+                <div class="workout-icon">🍽️</div>
+                <div class="workout-info">
+                    <h3>DIET PLAN</h3>
+                    <p>3,200 calories • High Protein • 5 meals</p>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-fire">START WORKOUT</button>
+                <button class="btn btn-outline">VIEW PLAN</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitFusion - Fitonist Style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0F172A;
+            color: #E2E8F0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background gradient aura */
+        .bg-aura {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(79, 70, 229, 0.15), transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(124, 58, 237, 0.1), transparent 50%);
+            z-index: 0;
+            animation: auraMove 20s ease-in-out infinite;
+        }
+
+        @keyframes auraMove {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #94A3B8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #E2E8F0;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #1E293B;
+            padding-bottom: 1rem;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: #64748B;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: white;
+        }
+
+        .tab:hover:not(.active) {
+            background: rgba(79, 70, 229, 0.1);
+            color: #94A3B8;
+        }
+
+        /* Tab content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Dashboard */
+        .welcome {
+            margin-bottom: 2rem;
+        }
+
+        .welcome h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome p {
+            color: #94A3B8;
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(79, 70, 229, 0.5);
+            box-shadow: 0 10px 40px rgba(79, 70, 229, 0.2);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            color: #94A3B8;
+            font-size: 0.9rem;
+        }
+
+        /* Muscle Selector */
+        .muscle-selector {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            border-radius: 24px;
+            padding: 2rem;
+        }
+
+        .muscle-selector h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .body-view-toggle {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .view-btn {
+            padding: 0.75rem 2rem;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            border-radius: 12px;
+            color: #94A3B8;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .view-btn.active {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: white;
+            border-color: transparent;
+        }
+
+        .body-container {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .body-model {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+            position: relative;
+        }
+
+        .body-image {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        /* Muscle group clickable areas (SVG overlay) */
+        .muscle-areas {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 100%;
+        }
+
+        .muscle-area {
+            cursor: pointer;
+            fill: transparent;
+            stroke: transparent;
+            transition: all 0.3s;
+        }
+
+        .muscle-area:hover {
+            fill: rgba(79, 70, 229, 0.3);
+            stroke: #4F46E5;
+            stroke-width: 2;
+        }
+
+        .muscle-area.selected {
+            fill: rgba(79, 70, 229, 0.5);
+            stroke: #7C3AED;
+            stroke-width: 2;
+        }
+
+        .selected-muscles {
+            flex: 1;
+        }
+
+        .selected-muscles h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #E2E8F0;
+        }
+
+        .muscle-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(79, 70, 229, 0.2);
+            border: 1px solid rgba(79, 70, 229, 0.4);
+            border-radius: 20px;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            color: #A5B4FC;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .muscle-tag:hover {
+            background: rgba(79, 70, 229, 0.3);
+            border-color: #4F46E5;
+        }
+
+        .muscle-tag .remove {
+            margin-left: 0.5rem;
+            color: #F87171;
+            font-weight: 700;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: white;
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(79, 70, 229, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(30, 41, 59, 0.8);
+            color: #94A3B8;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(79, 70, 229, 0.1);
+            border-color: #4F46E5;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Workout Plan Card */
+        .plan-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .plan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-header h2 {
+            font-size: 1.5rem;
+        }
+
+        .badge {
+            padding: 0.5rem 1rem;
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            border-radius: 20px;
+            color: #86EFAC;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4F46E5, #7C3AED);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        .exercise-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .exercise-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .exercise-item:hover {
+            background: rgba(79, 70, 229, 0.1);
+            transform: translateX(5px);
+        }
+
+        .exercise-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .exercise-info {
+            flex: 1;
+        }
+
+        .exercise-info h4 {
+            color: #E2E8F0;
+            margin-bottom: 0.3rem;
+        }
+
+        .exercise-info p {
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-aura"></div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="logo">⚡ FITFUSION</div>
+            <div class="nav-links">
+                <a href="#" class="active">Dashboard</a>
+                <a href="#">My Plans</a>
+                <a href="#">Progress</a>
+                <a href="#">Profile</a>
+            </div>
+        </nav>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('dashboard')">Dashboard</button>
+            <button class="tab" onclick="showTab('preferences')">Set Preferences</button>
+            <button class="tab" onclick="showTab('workout')">Workout Plan</button>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <div class="welcome">
+                <h1>Welcome back, Champion! 💪</h1>
+                <p>Ready to crush your fitness goals today?</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Workouts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">2.4K</div>
+                    <div class="stat-label">Kcal Burned</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">180</div>
+                    <div class="stat-label">Minutes</div>
+                </div>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h2>Today's Workout</h2>
+                    <span class="badge">ACTIVE</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 65%"></div>
+                </div>
+                <div class="exercise-list">
+                    <div class="exercise-item">
+                        <div class="exercise-icon">🏋️</div>
+                        <div class="exercise-info">
+                            <h4>Bench Press</h4>
+                            <p>4 sets × 12 reps • 90s rest</p>
+                        </div>
+                    </div>
+                    <div class="exercise-item">
+                        <div class="exercise-icon">💪</div>
+                        <div class="exercise-info">
+                            <h4>Dumbbell Flyes</h4>
+                            <p>3 sets × 15 reps • 60s rest</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary">Start Workout</button>
+                    <button class="btn btn-secondary">View Full Plan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preferences Tab -->
+        <div id="preferences" class="tab-content">
+            <div class="muscle-selector">
+                <h2>Select Target Muscle Groups</h2>
+                
+                <div class="body-view-toggle">
+                    <button class="view-btn active" onclick="toggleView('front')">Front View</button>
+                    <button class="view-btn" onclick="toggleView('back')">Back View</button>
+                </div>
+
+                <div class="body-container">
+                    <div class="body-model">
+                        <img id="bodyImage" src="C:/Users/hp/.gemini/antigravity/brain/65295a85-e610-48bb-81ce-28d6cb6a2504/human_body_front_1764264201602.png" alt="Human Body" class="body-image">
+                        
+                        <!-- SVG overlay for clickable muscle areas -->
+                        <svg class="muscle-areas" viewBox="0 0 300 600">
+                            <!-- Front view muscles -->
+                            <g id="frontMuscles">
+                                <!-- Chest -->
+                                <ellipse class="muscle-area" data-muscle="Chest" cx="150" cy="140" rx="50" ry="40" />
+                                <!-- Abs -->
+                                <rect class="muscle-area" data-muscle="Abs" x="120" y="180" width="60" height="80" rx="10" />
+                                <!-- Shoulders -->
+                                <ellipse class="muscle-area" data-muscle="Shoulders" cx="90" cy="120" rx="30" ry="25" />
+                                <ellipse class="muscle-area" data-muscle="Shoulders" cx="210" cy="120" rx="30" ry="25" />
+                                <!-- Biceps -->
+                                <ellipse class="muscle-area" data-muscle="Biceps" cx="70" cy="180" rx="20" ry="35" />
+                                <ellipse class="muscle-area" data-muscle="Biceps" cx="230" cy="180" rx="20" ry="35" />
+                                <!-- Quadriceps -->
+                                <rect class="muscle-area" data-muscle="Quadriceps" x="110" y="300" width="35" height="100" rx="10" />
+                                <rect class="muscle-area" data-muscle="Quadriceps" x="155" y="300" width="35" height="100" rx="10" />
+                            </g>
+                            
+                            <!-- Back view muscles (hidden by default) -->
+                            <g id="backMuscles" style="display: none;">
+                                <!-- Back -->
+                                <rect class="muscle-area" data-muscle="Back" x="100" y="120" width="100" height="120" rx="15" />
+                                <!-- Triceps -->
+                                <ellipse class="muscle-area" data-muscle="Triceps" cx="70" cy="180" rx="20" ry="35" />
+                                <ellipse class="muscle-area" data-muscle="Triceps" cx="230" cy="180" rx="20" ry="35" />
+                                <!-- Glutes -->
+                                <ellipse class="muscle-area" data-muscle="Glutes" cx="150" cy="270" rx="50" ry="30" />
+                                <!-- Hamstrings -->
+                                <rect class="muscle-area" data-muscle="Hamstrings" x="110" y="300" width="35" height="100" rx="10" />
+                                <rect class="muscle-area" data-muscle="Hamstrings" x="155" y="300" width="35" height="100" rx="10" />
+                                <!-- Calves -->
+                                <ellipse class="muscle-area" data-muscle="Calves" cx="125" cy="450" rx="15" ry="40" />
+                                <ellipse class="muscle-area" data-muscle="Calves" cx="175" cy="450" rx="15" ry="40" />
+                            </g>
+                        </svg>
+                    </div>
+
+                    <div class="selected-muscles">
+                        <h3>Selected Muscle Groups</h3>
+                        <div id="selectedMusclesList">
+                            <p style="color: #64748B;">Click on the body model to select muscle groups</p>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" onclick="savePreferences()">Save Preferences</button>
+                            <button class="btn btn-secondary" onclick="clearSelection()">Clear All</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workout Plan Tab -->
+        <div id="workout" class="tab-content">
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h2>8-Week Weight Gain Program</h2>
+                    <span class="badge">WEEK 3</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 37.5%"></div>
+                </div>
+                <h3 style="margin: 1.5rem 0 1rem; color: #E2E8F0;">Monday - Chest & Triceps</h3>
+                <div class="exercise-list">
+                    <div class="exercise-item">
+                        <div class="exercise-icon">🏋️</div>
+                        <div class="exercise-info">
+                            <h4>Barbell Bench Press</h4>
+                            <p>4 sets × 12 reps • 90s rest</p>
+                        </div>
+                    </div>
+                    <div class="exercise-item">
+                        <div class="exercise-icon">💪</div>
+                        <div class="exercise-info">
+                            <h4>Incline Dumbbell Press</h4>
+                            <p>3 sets × 15 reps • 60s rest</p>
+                        </div>
+                    </div>
+                    <div class="exercise-item">
+                        <div class="exercise-icon">🔥</div>
+                        <div class="exercise-info">
+                            <h4>Cable Flyes</h4>
+                            <p>3 sets × 15 reps • 60s rest</p>
+                        </div>
+                    </div>
+                    <div class="exercise-item">
+                        <div class="exercise-icon">⚡</div>
+                        <div class="exercise-info">
+                            <h4>Tricep Dips</h4>
+                            <p>3 sets × 12 reps • 60s rest</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Body view toggle
+        function toggleView(view) {
+            const frontMuscles = document.getElementById('frontMuscles');
+            const backMuscles = document.getElementById('backMuscles');
+            const bodyImage = document.getElementById('bodyImage');
+            const viewBtns = document.querySelectorAll('.view-btn');
+
+            viewBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (view === 'front') {
+                frontMuscles.style.display = 'block';
+                backMuscles.style.display = 'none';
+                bodyImage.src = 'C:/Users/hp/.gemini/antigravity/brain/65295a85-e610-48bb-81ce-28d6cb6a2504/human_body_front_1764264201602.png';
+            } else {
+                frontMuscles.style.display = 'none';
+                backMuscles.style.display = 'block';
+                bodyImage.src = 'C:/Users/hp/.gemini/antigravity/brain/65295a85-e610-48bb-81ce-28d6cb6a2504/human_body_back_1764264216428.png';
+            }
+
+            // Clear selections when switching views
+            document.querySelectorAll('.muscle-area').forEach(area => {
+                area.classList.remove('selected');
+            });
+            updateSelectedMuscles();
+        }
+
+        // Muscle selection
+        const selectedMuscles = new Set();
+
+        document.querySelectorAll('.muscle-area').forEach(area => {
+            area.addEventListener('click', function() {
+                const muscle = this.getAttribute('data-muscle');
+                
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
+                    selectedMuscles.delete(muscle);
+                } else {
+                    this.classList.add('selected');
+                    selectedMuscles.add(muscle);
+                }
+                
+                updateSelectedMuscles();
+            });
+        });
+
+        function updateSelectedMuscles() {
+            const listDiv = document.getElementById('selectedMusclesList');
+            
+            if (selectedMuscles.size === 0) {
+                listDiv.innerHTML = '<p style="color: #64748B;">Click on the body model to select muscle groups</p>';
+            } else {
+                listDiv.innerHTML = Array.from(selectedMuscles).map(muscle => 
+                    `<span class="muscle-tag">${muscle} <span class="remove" onclick="removeMuscle('${muscle}')">×</span></span>`
+                ).join('');
+            }
+        }
+
+        function removeMuscle(muscle) {
+            selectedMuscles.delete(muscle);
+            document.querySelectorAll(`.muscle-area[data-muscle="${muscle}"]`).forEach(area => {
+                area.classList.remove('selected');
+            });
+            updateSelectedMuscles();
+        }
+
+        function clearSelection() {
+            selectedMuscles.clear();
+            document.querySelectorAll('.muscle-area').forEach(area => {
+                area.classList.remove('selected');
+            });
+            updateSelectedMuscles();
+        }
+
+        function savePreferences() {
+            if (selectedMuscles.size === 0) {
+                alert('Please select at least one muscle group');
+                return;
+            }
+            alert(`Preferences saved!\nSelected muscles: ${Array.from(selectedMuscles).join(', ')}`);
+        }
+    </script>
+</body>
+</html>

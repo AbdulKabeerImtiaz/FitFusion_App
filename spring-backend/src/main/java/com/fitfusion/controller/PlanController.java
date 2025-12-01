@@ -25,6 +25,10 @@ public class PlanController {
     @GetMapping("/{id}/plans")
     public ResponseEntity<List<PlanBundle>> getUserPlans(@PathVariable Long id) {
         List<PlanBundle> plans = planService.getUserPlans(id);
+        System.out.println("🔍 API: Returning plans for user " + id + ": " + plans);
+        if (!plans.isEmpty()) {
+            System.out.println("🔍 API: First plan ID: " + plans.get(0).getId());
+        }
         return ResponseEntity.ok(plans);
     }
 

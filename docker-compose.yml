@@ -84,12 +84,27 @@ services:
       mysql:
         condition: service_healthy
       rag-service:
-        condition: service_healthy
+        condition: service_started
     healthcheck:
       test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/actuator/health" ]
       interval: 30s
       timeout: 10s
       retries: 3
+
+  # ============================================
+  # Frontend (React + Nginx)
+  # ============================================
+  frontend:
+    build:
+      context: ./fitfusion-frontend
+      dockerfile: Dockerfile
+    container_name: fitfusion-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - spring-backend
+    networks:
+      - fitfusion-network
 
 networks:
   fitfusion-network:

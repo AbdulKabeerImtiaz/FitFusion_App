@@ -42,7 +42,8 @@ class RAGEngine:
         self.llm = Gemini(
             model_name=LLM_MODEL,
             api_key=GOOGLE_API_KEY,
-            temperature=0.3  # Lower temperature for more consistent JSON output
+            temperature=0.7,  # Higher temperature for variety while maintaining structure
+            max_tokens=8192   # Maximum output limit for Gemini 2.0 Flash
         )
         
         # Set global settings
@@ -194,9 +195,10 @@ class RAGEngine:
         
         query = "exercises for " + ", ".join(query_parts)
         
-        # Retrieve relevant exercises
+        # Retrieve relevant exercises (retrieve more to ensure variety across weeks)
+        # For a multi-week plan, we need enough exercises to avoid repetition
         retriever = self.index.as_retriever(
-            similarity_top_k=15,
+            similarity_top_k=30,  # Reduced from 50 to save tokens while maintaining variety
             filters=MetadataFilters(filters=[ExactMatchFilter(key="source", value="exercise")])
         )
         
